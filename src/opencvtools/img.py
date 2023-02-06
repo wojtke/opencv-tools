@@ -60,3 +60,7 @@ class Img(np.ndarray):
         text_color = (0, 0, 0) if np.array(color).mean() > 127 else (255, 255, 255)
         self.draw_text(label, (t, l), color=text_color, bg_color=color)
         return self
+
+    def blend(self, other, alpha=1):
+        cv2.addWeighed(self, other, alpha=alpha, dst=self)
+        return self

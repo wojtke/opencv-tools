@@ -2,6 +2,8 @@ from collections.abc import Generator
 
 import cv2
 
+from src.img import Img
+
 
 class Capture(Generator):
     """
@@ -22,7 +24,7 @@ class Capture(Generator):
         ret, frame = self.cap.read()
         if not ret:
             raise StopIteration
-        return frame
+        return Img(frame)
 
     def __del__(self):
         self.cap.release()
